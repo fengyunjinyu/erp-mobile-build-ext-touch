@@ -2,12 +2,18 @@ Ext.application({
     name: 'mobileapp',
 
     icon:'resources/images/logo.png',
-    models:['User' ,"Group"],
-    controllers:['Users' , 'Login'],
-    views:['Main' , 'Users'],
+    //models:['User' ,"Group"],
+    //controllers:['Users' , 'Login'],
+
+    /*
+    requires:[
+        "mobileapp.view.main.Main"
+    ],
+    */
+    //views:['Main'],
     launch:function(){
         //Ext.Msg.alert("Hi" , "Hello Sencha Touch" , Ext.emptyFn);
-        Ext.create('mobileapp.view.Main')
+        Ext.create('mobileapp.view.main.Main')
 
     }
 })
