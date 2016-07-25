@@ -4,7 +4,6 @@ Ext.define("mobileapp.view.main.Main" ,{
     requires:[
         'mobileapp.controller.Main',
         'mobileapp.store.navigations'
-
     ],
     config:{
         fullscreen: true,
