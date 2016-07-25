@@ -2,14 +2,37 @@
 Ext.define("mobileapp.view.main.Main" ,{
     extend:'Ext.NestedList',
     requires:[
-        'mobileapp.controller.Main',
+        //'mobileapp.controller.Main',
         'mobileapp.store.navigations'
     ],
+    id:'mainNestedList',
     config:{
         fullscreen: true,
         title: 'hxerp',
+        layout:{
+            animation:{
+                duration:250,
+                easing: 'ease-in-out'
+            }
+        },
         displayField: 'text',
-        store:Ext.create("mobileapp.store.navigations")
+        store:Ext.create("mobileapp.store.navigations"),
+
+        toolbar:{
+            id:'mainNavigationBar',
+            xtype:'titlebar',
+            docked:'top',
+            title:'HXS',
+            items:{
+                xtype:'button',
+                id:'viewSourceButton',
+                align:'right',
+                ui:'action',
+                action:'viewSource',
+                text:'Source'
+            }
+
+        }
     }
 });
 

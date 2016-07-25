@@ -15,7 +15,7 @@ Ext.define('mobileapp.controller.MainController' , {
             btn_nav:{
                 tap:'onMainnav'
             },
-            nav:{  //µã»÷À¸Ä¿Ñ¡Ôñ
+            nav:{
                 itemtap:'onNavTap'
             }
         },
@@ -42,13 +42,45 @@ Ext.define('mobileapp.controller.MainController' , {
     },
     onNavTap:function(nestedList , list , index){
         var record = list.getStore().getAt(index);
+
         if(record.isLeaf()){
-            this.redirectTo(record);
+            //console.log(record);
+            console.log(record.get('id'))
+            //Ext.app.Application.redirectTo(record.get('id'));
         }else{
             this.getApplication().getHistory().add(Ext.create('Ext.app.Action', {
                 url: 'menu/' + record.get('id')
             }));
         }
+    },
+    showMenuById:function(id){
+        var me = this;
+        var nav = this.getNav(),store = nav.getStore();
+        var item =  (!id || id == 'root') ? store.getRoot() : store.getNodeById(id);
+        if(item){
+            nav.goToNode(item);
+            console.log(item.get('text'));
+            //Ext.component.query("#mainNestedList").getToolbar().setTitle(item.get('text'))
+            //me.getToolbar().setTitle(item.get('text'));
+        }
+    },
+    showView:function(item){
+        var nav = this.getNav(),title = item.get('text'),
+            view = this.createView(item),
+            layout = nav.getLayout(),
+            newAnim;
+    },
+    onBackTap:function(nestedList , node){
+        if (node.isLeaf()) {
+            this.getSourceButton().setHidden(true);
+        }
+
+        this.getApplication().getHistory().add(Ext.create('Ext.app.Action', {
+            url: 'menu/' + node.parentNode.get('id')
+        }), true);
+    },
+    showTouchEventConsole:function(button){
+        this.getTouchEvents().showConsole();
     }
 
 })

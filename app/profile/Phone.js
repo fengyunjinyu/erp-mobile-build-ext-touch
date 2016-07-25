@@ -1,14 +1,14 @@
-Ext.define("mobileapp.profile.User" , {
+Ext.define("mobileapp.profile.Phone" , {
     extend:'Ext.app.Profile',
+    /*
     requires:[
         'mobileapp.controller.UserController',
         'mobileapp.view.user.UserGrid'
     ],
+    */
     config:{
-        views:['mobileapp.view.user.UserGrid'],
-        controllers:['mobileapp.controller.UserController'],
-        models:[],
-        stores:[]
+        views:['mobileapp.view.main.Main'],
+        controllers:['mobileapp.controller.MainController']
 
     },
     isActive:function(){

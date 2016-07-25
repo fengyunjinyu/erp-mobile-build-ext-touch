@@ -12,19 +12,25 @@ Ext.application({
     ],
 
     profiles:[
-        //'User'
+        'Phone'
     ],
     controllers:[
         //'mobileapp.controller.UserController',
-        'mobileapp.controller.AbstractController'
+        'mobileapp.controller.AbstractController',
+        //'mobileapp.controller.MainController'
     ],
 
     //views:['Main'],
     launch:function(){
+
+        /*
         var that = this;
 
         //Ext.Msg.alert("Hi" , "Hello Sencha Touch" , Ext.emptyFn);
-        Ext.create('mobileapp.view.main.Main')
+        Ext.create('mobileapp.view.main.Main');
+
+        */
+
 
         //Ext.create("mobileapp.view.user.User")
         //var handler = new that;
@@ -32,6 +38,6 @@ Ext.application({
         //var d = new Ext.create("mobileapp.profile.User");
         //d.launch();
         //d.addComp();
-        Ext.create("mobileapp.view.user.UserGrid");
+        //Ext.create("mobileapp.view.user.UserGrid");
     }
 });
