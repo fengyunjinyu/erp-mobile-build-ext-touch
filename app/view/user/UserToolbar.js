@@ -19,12 +19,11 @@ Ext.define("mobileapp.view.user.UserToolbar" , {
             {
                 xtype:'button',
                 iconCls:'home',
-                width:40,
+                width:40
                 //text:'view'
             },
             {
                 iconCls:'refresh'
-
             }
         ]
     }

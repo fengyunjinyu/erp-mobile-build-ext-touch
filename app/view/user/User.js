@@ -1,7 +1,8 @@
 Ext.define("mobileapp.view.user.User" , {
     extend:'Ext.TabPanel',
+
     requires:[
-        'mobileapp.view.user.UserGrid'
+        //'mobileapp.view.user.UserGrid'
     ],
     config:{
         defaults:{

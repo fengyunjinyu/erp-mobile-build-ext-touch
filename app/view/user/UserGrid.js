@@ -26,14 +26,27 @@ Ext.define("mobileapp.view.user.UserGrid" , {
     extend:'Ext.List',
     alias:'widget.usergrid',
     xtype:'usergrid',
-
     requires:[
+        //'mobileapp.controller.UserController',
+        //'mobileapp.profile.user'
         //'mobileapp.store.users'
         //'mobileapp.view.user.UserToolbar'
     ],
+
+
+
     config:{
         //
         fullscreen: true,
+
+        /*
+        control:{
+            'button[id=adduser]':{
+                tap:'onCreateForm'
+            }
+        },
+        */
+
 
         itemTpl: '{title}',
         data: [
@@ -62,21 +75,49 @@ Ext.define("mobileapp.view.user.UserGrid" , {
         items:[
             {
                 xtype:'toolbar',
-                docked:'top',
+                docked:'bottom',
                 items: [
-                    { iconCls: 'action' },
-                    { iconCls: 'add' },
-                    { iconCls: 'compose' },
-                    { iconCls: 'delete' },
-                    { iconCls: 'organize' },
-                    { iconCls: 'refresh' },
-                    { xtype: 'spacer' }
+                    {
+                        iconCls: 'add',
+                        id:'normal_add'
+                    },
+                    {
+                        iconCls: 'compose',
+                        id:'normal_edit'
+                    },
+                    {
+                        iconCls: 'delete',
+                        id:'normal_view'
+                    },
+                    {
+                        iconCls: 'refresh',
+                        id:'normal_delete'
+                    }
+                ]
+            },
+            {
+                xtype:'titlebar',
+                docked:'top',
+                title:'用户列表',
+                items:[
+                    {
+                         xtype:'button',
+                        text:'back',
+                        align:'left',
+                        id:'adduser'
+                        /*,
+                        listeners:{
+                            tap:'onCreateForm'
+                        }
+                        */
+
+                    },
+                    {
+                         xtype:'button', iconCls:'home',align:'right'
+                    }
                 ]
             }
-
         ]
-
-
     }
 })
 
