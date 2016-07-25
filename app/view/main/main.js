@@ -38,7 +38,7 @@ Ext.define("mobileapp.view.main.Main" , {
             {
                 title:'User',
                 iconCls:'user',
-                html: 'Home Screen2'
+                xtype:'usergrid'
             },
             {
                 title:'Test',

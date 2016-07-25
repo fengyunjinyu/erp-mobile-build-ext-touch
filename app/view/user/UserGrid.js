@@ -21,40 +21,65 @@ Ext.define("mobileapp.view.user.UserGrid" , {
 })
 
 */
-/*
+
 Ext.define("mobileapp.view.user.UserGrid" , {
-    extend:'Ext.DataView',
+    extend:'Ext.List',
+    alias:'widget.usergrid',
+    xtype:'usergrid',
+
     requires:[
         //'mobileapp.store.users'
+        //'mobileapp.view.user.UserToolbar'
     ],
     config:{
+        //
         fullscreen: true,
+
         itemTpl: '{title}',
         data: [
             { title: 'Item 1' },
             { title: 'Item 2' },
             { title: 'Item 3' },
+            { title: 'Item 4'},
+            { title: 'Item 1' },
+            { title: 'Item 2' },
+            { title: 'Item 3' },
+            { title: 'Item 4' },
+            { title: 'Item 1' },
+            { title: 'Item 2' },
+            { title: 'Item 3' },
+            { title: 'Item 4' },
+            { title: 'Item 1' },
+            { title: 'Item 2' },
+            { title: 'Item 3' },
             { title: 'Item 4' }
+        ],
+        title:'Hello',
+        width:'100%',
+        height:'100%',
+
+
+        items:[
+            {
+                xtype:'toolbar',
+                docked:'top',
+                items: [
+                    { iconCls: 'action' },
+                    { iconCls: 'add' },
+                    { iconCls: 'compose' },
+                    { iconCls: 'delete' },
+                    { iconCls: 'organize' },
+                    { iconCls: 'refresh' },
+                    { xtype: 'spacer' }
+                ]
+            }
+
         ]
+
+
     }
 })
 
-*/
 
-var touchTeam = Ext.create('Ext.DataView', {
-    requires: ['Ext.data.Store'],
-    fullscreen: true,
-    store: {
-        fields: ['name', 'age'],
-        data: [
-            {name: 'Jamie',  age: 100},
-            {name: 'Rob',   age: 21},
-            {name: 'Tommy', age: 24},
-            {name: 'Jacky', age: 24},
-            {name: 'Ed',   age: 26}
-        ]
-    },
-    height:200,
 
-    itemTpl: '<div>111</div>'
-});
+
