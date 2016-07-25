@@ -1,1 +1,65 @@
-{"text":"Groceries","items":[{"text":"Drinks","items":[{"text":"Water","items":[{"text":"Sparkling","leaf":true},{"text":"Still","leaf":true}]},{"text":"Coffee","leaf":true},{"text":"Espresso","leaf":true},{"text":"Redbull","leaf":true},{"text":"Coke","leaf":true},{"text":"Diet Coke","leaf":true}]},{"text":"Fruit","items":[{"text":"Bananas","leaf":true},{"text":"Lemon","leaf":true}]},{"text":"Snacks","items":[{"text":"Nuts","leaf":true},{"text":"Pretzels","leaf":true},{"text":"Wasabi Peas","leaf":true}]}]}
+{
+  "text": "Groceries",
+  "items": [
+    {
+      "text": "会员管理",
+      "items": [
+        {
+          "text": "会员列表",
+          "leaf":true
+        },
+        {
+          "text": "银行卡查询",
+          "items": [
+            {
+              "text": "卡解绑",
+              "leaf": true
+            },
+            {
+              "text": "银行卡查询",
+              "leaf": true
+            }
+          ]
+        },
+        {
+          "text": "会员重置",
+          "leaf": true
+        },
+        {
+          "text": "会员信息管理",
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "text": "活动管理",
+      "items": [
+        {
+          "text": "618活动",
+          "leaf": true
+        },
+        {
+          "text": "优酷推广活动",
+          "leaf": true
+        }
+      ]
+    },
+    {
+      "text": "系统管理",
+      "items": [
+        {
+          "text": "权限管理",
+          "leaf": true
+        },
+        {
+          "text": "版本管理",
+          "leaf": true
+        },
+        {
+          "text": "渠道管理",
+          "leaf": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-/*
+
 Ext.define("mobileapp.view.main.Main" ,{
     extend:'Ext.NestedList',
     requires:[
@@ -8,16 +8,16 @@ Ext.define("mobileapp.view.main.Main" ,{
     ],
     config:{
         fullscreen: true,
-        title: 'Groceries',
+        title: 'hxerp',
         displayField: 'text',
         store:Ext.create("mobileapp.store.navigations")
     }
 });
 
-*/
 
 
 
+/*
 Ext.define("mobileapp.view.main.Main" , {
     extend:'Ext.TabPanel',
 
@@ -49,6 +49,8 @@ Ext.define("mobileapp.view.main.Main" , {
         ]
     }
 })
+
+*/
 
 /*
 

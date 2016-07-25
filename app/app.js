@@ -1,12 +1,9 @@
 Ext.Loader.setConfig({enabled: true});
 Ext.application({
     name: 'mobileapp',
-
     icon:'resources/images/logo.png',
     //models:['User' ,"Group"],
     //controllers:['Users' , 'Login'],
-
-
     requires:[
         //"mobileapp.view.main.Main",
         'mobileapp.controller.AbstractController',
@@ -22,13 +19,12 @@ Ext.application({
         'mobileapp.controller.AbstractController'
     ],
 
-
     //views:['Main'],
     launch:function(){
         var that = this;
 
         //Ext.Msg.alert("Hi" , "Hello Sencha Touch" , Ext.emptyFn);
-        //Ext.create('mobileapp.view.main.Main')
+        Ext.create('mobileapp.view.main.Main')
 
         //Ext.create("mobileapp.view.user.User")
         //var handler = new that;
@@ -38,4 +34,4 @@ Ext.application({
         //d.addComp();
         Ext.create("mobileapp.view.user.UserGrid");
     }
-})
+});

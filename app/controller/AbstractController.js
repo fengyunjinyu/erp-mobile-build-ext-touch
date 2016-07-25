@@ -38,6 +38,19 @@ Ext.define('mobileapp.controller.AbstractController' , {
     },
     onRefershData:function(){
 
+    },
+    /**
+     * 获取当前面板对象
+     */
+    getPanel:function(){
+
+    },
+    /**
+     * 获取当前列表对象
+     */
+    getGridList:function(){
+
     }
+
 
 })
