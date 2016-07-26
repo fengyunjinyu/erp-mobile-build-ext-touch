@@ -6,7 +6,7 @@ Ext.define("mobileapp.view.user.User" , {
         'mobileapp.view.user.CreateUser',
         //'mobileapp.view.user.ViewUser'
     ],
-    id:'usertabpanel',
+    //id:'usertabpanel',
     config:{
 
         defaults:{
@@ -74,15 +74,21 @@ Ext.define("mobileapp.view.user.User" , {
             }
         ],
 
-        /*
+
         listeners:{
             'activeitemchange':function(e, value, oldValue, eOpts){
                 if(e.getActiveItem().id == "d_normal_edit"){
-
                     //Ext.Application.
                     var data = Ext.getCmp("usergrid").getSelection();
+                    if(data.length<=0){
+                        new Ext.MessageBox().alert("提示", "请选择一条信息");
+                        return false
+
+                    }else{
+                        return true;
 
 
+                    }
                     return false;
                 }else{
 
@@ -93,7 +99,7 @@ Ext.define("mobileapp.view.user.User" , {
 
         }
 
-        */
+
     },
 
 })
