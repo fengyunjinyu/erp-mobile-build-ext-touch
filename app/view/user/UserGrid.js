@@ -46,8 +46,6 @@ Ext.define("mobileapp.view.user.UserGrid" , {
             }
         },
         */
-
-
         itemTpl: '{title}',
         data: [
             { title: 'Item 1' },
@@ -67,15 +65,17 @@ Ext.define("mobileapp.view.user.UserGrid" , {
             { title: 'Item 3' },
             { title: 'Item 4' }
         ],
-        title:'Hello',
         width:'100%',
         height:'100%',
-
+        scrollable:true,
 
         items:[
+            /*
             {
                 xtype:'toolbar',
-                docked:'bottom',
+                docked:'top',
+                width:'100%',
+                align:'center',
                 items: [
                     {
                         iconCls: 'add',
@@ -94,7 +94,11 @@ Ext.define("mobileapp.view.user.UserGrid" , {
                         id:'normal_delete'
                     }
                 ]
-            },
+            }
+
+            */
+            /*
+            ,
             {
                 xtype:'titlebar',
                 docked:'top',
@@ -105,11 +109,11 @@ Ext.define("mobileapp.view.user.UserGrid" , {
                         text:'back',
                         align:'left',
                         id:'adduser'
-                        /*,
+
                         listeners:{
                             tap:'onCreateForm'
                         }
-                        */
+
 
                     },
                     {
@@ -117,6 +121,7 @@ Ext.define("mobileapp.view.user.UserGrid" , {
                     }
                 ]
             }
+            */
         ]
     }
 })

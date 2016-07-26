@@ -15,6 +15,8 @@ Ext.define("mobileapp.view.main.Main" ,{
                 easing: 'ease-in-out'
             }
         },
+
+        useTitleAsBackText: false,
         displayField: 'text',
         store:Ext.create("mobileapp.store.navigations"),
 

@@ -6,6 +6,7 @@ Ext.define('mobileapp.controller.AbstractController' , {
     alias:'controller.abstract',
     config:{
         control:{
+            /*
             '#normal_create':{
                 tap:"onCreateForm"
             },
@@ -18,7 +19,15 @@ Ext.define('mobileapp.controller.AbstractController' , {
             '#normal_delete':{
                 tap:'onDeleteItem'
             }
+
+            */
         }
+    },
+
+    getActiveView:function(){
+        //获取当前活动对象
+
+
     },
 
     onCreateForm:function(){
@@ -27,6 +36,9 @@ Ext.define('mobileapp.controller.AbstractController' , {
     },
     onEditForm:function(){
         console.log('edit');
+        console.log(this.activeView);
+        var data = this.ActiveView.getSelection();
+        console.log(data);
 
     },
     onViewForm:function(){

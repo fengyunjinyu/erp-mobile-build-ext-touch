@@ -11,12 +11,15 @@ Ext.application({
         //'mobileapp.controller.UserController'
     ],
 
+
     profiles:[
         'Phone'
     ],
+
+
     controllers:[
         //'mobileapp.controller.UserController',
-        'mobileapp.controller.AbstractController',
+        //'mobileapp.controller.AbstractController'
         //'mobileapp.controller.MainController'
     ],
 
@@ -39,5 +42,7 @@ Ext.application({
         //d.launch();
         //d.addComp();
         //Ext.create("mobileapp.view.user.UserGrid");
+
+        //Ext.create("mobileapp.view.user.CreateUser");
     }
 });
