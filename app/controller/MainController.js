@@ -39,6 +39,7 @@ Ext.define('mobileapp.controller.MainController' , {
             '': 'showMenuById'
         }
     },
+    projectname:'mobileapp.',
     soSearch:function(query){
         console.log('Search for '+query);
     },
@@ -84,17 +85,48 @@ Ext.define('mobileapp.controller.MainController' , {
         }
     },
     activeView:null,  //�当前活动的activeview
+    activeStore:null,
+    activeModel:null,
+    /**
+     * 对象缓存
+     */
+    viewCache:[],
+    StoreCache:[],
+    ModelCache:[],
+
+
+    /**
+     * model store view 缓存地址
+     */
+    cache_msv:{},
+    /**
+     *
+     * @param item
+     */
 
     showView:function(item){
         var that = this;
-        var nav = this.getNav(),title = item.get('text'),
-            view = this.createView(item),
-            layout = nav.getLayout();
+        var nav = this.getNav(),title = item.get('text');
+
+        var module_name = item.get('id');
+
+        if(this.cache_msv[module_name]){
+
+            //当前view 已生成
+            console.log("当前结果已缓存");
+            that.getToolbar().setTitle(title);
+            nav.setDetailCard(view);
+        }else{
+
+            var view = this.createView(item),  layout = nav.getLayout();
             //anim = item.get('animation');
             //newAnim;
-        this.activeView = view;
-        that.getToolbar().setTitle(title);
-        nav.setDetailCard(view);
+            this.activeView = view;
+            that.getToolbar().setTitle(title);
+            nav.setDetailCard(view);
+
+        }
+
     },
     /**
      *
@@ -114,12 +146,84 @@ Ext.define('mobileapp.controller.MainController' , {
 
     },
     createViewByName:function(data){
+        var that = this;
         var name = data.viewname;
         var view = Ext.create("mobileapp.view."+name);
         view.viewName = name;
+
+        //view.addListener('activeitemchange' , that.doTabChange , that);
+        console.log('jfjfj');
         return view;
 
     },
+
+    /**
+     * Tab选项卡切换时触发的前置技能
+     */
+
+    doTabChange:function( e, value, oldValue, eOpts ){
+        var obj = e.getActiveItem().initialConfig;
+
+        if(obj.needselected){
+            var data = this.activeView.down('usergrid').getSelection();
+            console.log(data);
+            if(data.length <=0){
+                new Ext.MessageBox().alert("提示", "请选择一条信息");
+                return false
+            }else{
+
+                switch(obj.type) {
+
+                    case 'update':
+                        this.loadform('update');
+                        break;
+                    case 'edit':
+                        this.loadform('edit');
+                        break;
+                    case 'upload':
+                        this.uploadform();
+                        break;
+                    case  'delete' :
+                        this.delete();
+                        break
+                }
+                return true;
+
+            }
+        }
+        /*
+        if(e.getActiveItem().id == "d_normal_edit"){
+            //Ext.Application.
+            var data = Ext.getCmp("usergrid").getSelection();
+            if(data.length<=0){
+                new Ext.MessageBox().alert("提示", "请选择一条信息");
+                return false
+
+            }else{
+                return true;
+
+
+            }
+            return false;
+        }else{
+
+            return true;
+        }
+
+        */
+    },
+
+    /**
+     *
+     * @param str  type:   edit update
+     * @param data datagrid selected data
+     */
+    loadForm:function(str , data){
+        var form_handler = this.activeView.down(this.activeView.name+'str');
+        var grid_handler = this.activeView.down(this.activeView.name+'grid');
+    },
+
+
 
     getToolbar :function(){
         return Ext.ComponentQuery.query("#mainNavigationBar")[0];
@@ -143,52 +247,28 @@ Ext.define('mobileapp.controller.MainController' , {
         return str.replace(reg,function(m){return m.toUpperCase()})
     },
     createView:function(item){
+        var that = this;
         var name = this.getViewName(item);
         var limit = item.get('limit') || 20;
-        var view, i = 0, j, oldView;
+        //var view, i = 0, j, oldView;
         var view_name_used = this.getUsedViewName(item.get('id'));
+        var module_name = item.get('id').toLowerCase();
 
-        view = Ext.create("mobileapp.view.user."+item.get('id'));
+        var store, model, view ;
+        var cache_obj = {}
+        console.log(this.projectname+"view."+item.get('id').toLowerCase()+'.'+item.get('id'))
+        view = Ext.create('mobileapp.view.user.User');
+        store = Ext.create(this.projectname+"store."+item.get('id'));
+        model = Ext.create(this.projectname+'model.'+item.get('id'));
+
+        cache_obj['view'] = view;
+        cache_obj['store'] = store;
+        cache_obj['model'] = model;
+
+        view.addListener('activeitemchange' , that.doTabChange , that);
         view.viewName = name;
+        this.cache_msv[item.get('id')] = cache_obj;
+
         return view;
-    },
-
-    getStore:function(){
-
-    },
-
-    onCreateForm:function(){
-        console.log("sss");
-
-    },
-    onEditForm:function(){
-        console.log('edit');
-        var data = this.activeView.getSelection();
-        console.log(data);
-        if(data.length<=0){
-            var dialog = new Ext.MessageBox();
-            dialog.alert("提示" , "请选择一条记录");
-        }else{
-            //this.showFormWithEdit(data);
-            this.showViewByName({text:'创建用户',viewname:'user.CreateUser'})
-
-        }
-
-
-    },
-
-    showForm:function(data){
-
-    },
-    onViewForm:function(){
-        console.log('view')
-
-    },
-    onDeleteItem:function(){
-        console.log('delete');
-    },
-    onRefershData:function(){
-
-    },
-
+    }
 })

@@ -8,7 +8,6 @@ Ext.define("mobileapp.view.user.User" , {
     ],
     //id:'usertabpanel',
     config:{
-
         defaults:{
             styleHtmlContent:true
         },
@@ -17,6 +16,7 @@ Ext.define("mobileapp.view.user.User" , {
         tabBarPosition:'bottom',
         width:'100%',
         title:'',
+        id:'userpanel',
         enableTabScroll:true,
         layoutOnTabChange:true,
         items:[
@@ -53,13 +53,7 @@ Ext.define("mobileapp.view.user.User" , {
                 iconCls: 'compose',
                 id: 'd_normal_edit',
                 title: '编辑',
-
-                /*
-                activetabchange:function(e, value, oldValue, eOpts){
-                    console.log('ddd');
-
-                },
-                */
+                needselected:true
             }
             ,
             {
@@ -74,6 +68,7 @@ Ext.define("mobileapp.view.user.User" , {
             }
         ],
 
+        /*
 
         listeners:{
             'activeitemchange':function(e, value, oldValue, eOpts){
@@ -98,6 +93,8 @@ Ext.define("mobileapp.view.user.User" , {
             }
 
         }
+
+        */
 
 
     },

@@ -1,7 +1,7 @@
 /**
  * 用户信息商店
  */
-Ext.define("mobileapp.store.users" , {
+Ext.define("mobileapp.store.User" , {
     fields: ['name' , 'email' , 'phone'],
     data: [
         { 'name': 'Lisa',  "email":"lisa@simpsons.com",  "phone":"555-111-1224"  },
