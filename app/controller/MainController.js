@@ -18,18 +18,6 @@ Ext.define('mobileapp.controller.MainController' , {
             nav:{
                 itemtap:'onNavTap',
                 back:'onBackTap'
-            },
-            '#normal_create':{
-                tap:"onCreateForm"
-            },
-            '#normal_edit':{
-                tap:'onEditForm'
-            },
-            '#normal_view':{
-                tap:'onViewForm'
-            },
-            '#normal_delete':{
-                tap:'onDeleteItem'
             }
         },
         routes: {
@@ -135,7 +123,6 @@ Ext.define('mobileapp.controller.MainController' , {
      * exp: { text:'创建用户'，viewname:'user.CreateUser' }
      */
     showViewByName:function(data){
-
         var that = this;
         var nav = this.getNav();
         var layout = nav.getLayout();
@@ -161,7 +148,6 @@ Ext.define('mobileapp.controller.MainController' , {
     /**
      * Tab选项卡切换时触发的前置技能
      */
-
     doTabChange:function( e, value, oldValue, eOpts ){
         var obj = e.getActiveItem().initialConfig;
 
@@ -169,20 +155,19 @@ Ext.define('mobileapp.controller.MainController' , {
             var data = this.activeView.down('usergrid').getSelection();
             console.log(data);
             if(data.length <=0){
-                new Ext.MessageBox().alert("提示", "请选择一条信息");
+                new Ext.MessageBox().alert("提示", "请选择一条记录");
                 return false
             }else{
-
                 switch(obj.type) {
-
                     case 'update':
-                        this.loadform('update');
+                        this.loadForm( data , 'update');
                         break;
                     case 'edit':
-                        this.loadform('edit');
+                        console.log('sdd');
+                        this.loadForm(data ,'edit');
                         break;
                     case 'upload':
-                        this.uploadform();
+                        this.uploadform(data);
                         break;
                     case  'delete' :
                         this.deleteitem(data);
@@ -193,6 +178,12 @@ Ext.define('mobileapp.controller.MainController' , {
             }
         }
     },
+
+    /**
+     * 删除操作
+     * @param data
+     * @returns {boolean}
+     */
 
     deleteitem:function(data){
         //返回store 结果
@@ -207,20 +198,75 @@ Ext.define('mobileapp.controller.MainController' , {
             },
             failure:function(){
             }
-
         });
-
         return false;
     },
+    /**
+     * 加载数据到form中
+     * @param item_data
+     */
+    loadForm:function(item_data , action_type){
+        var me = this;
+
+        var proxy_url = this.cache_msv[this.active_modulename].store.proxy;
+        Ext.Ajax.request({
+            url:proxy_url.api.view,
+            params:item_data,
+            success:function(response){
+                var obj = Ext.decode(response.responseText);
+                switch(action_type){
+                    case 'edit':
+                        me.cache_msv[me.active_modulename].view.down('edit'+me.active_modulename.toLowerCase()).load(obj.data);
+                        break;
+                    case 'view':
+                        me.cache_msv[me.active_modulename].view.down('view'+me.active_modulename.toLowerCase()).load(obj.data);
+                        break;
+                }
+            },
+            failure:function(response){
+
+
+            }
+        });
+    },
+
+
 
     /**
-     *
+     *  表单提交事件
      * @param str  type:   edit update
      * @param data datagrid selected data
      */
-    loadForm:function(str , data){
-        var form_handler = this.activeView.down(this.activeView.name+'str');
-        var grid_handler = this.activeView.down(this.activeView.name+'grid');
+    submitForm:function( e,str_type , data){
+        var handler;
+        switch(sty_type){
+            case 'edit':
+                handler = this.cache_msv[this.active_module].view.down('edit'+me.active_modulename.toLowerCase());
+                break;
+            case 'view':
+                handler = this.cache_msv[this.active_module].view.down('view'+me.active_modulename.toLowerCase());
+                break;
+        }
+        if(!handler){
+            new Ext.MessageBox().alert("提示" ,'获取数据异常');
+            return ;
+        }else{
+
+            handler.submit({
+                url:this.cache_msv[this.active_module].store.api.edit,
+                method:'post',
+                success:function(response){
+                    console.log(success);
+
+
+                },
+                failure:function(response){
+
+                }
+
+            });
+        }
+
     },
 
 

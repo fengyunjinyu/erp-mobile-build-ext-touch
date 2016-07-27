@@ -4,6 +4,7 @@ Ext.define("mobileapp.view.user.User" , {
     requires:[
         'mobileapp.view.user.UserGrid',
         'mobileapp.view.user.CreateUser',
+        'mobileapp.view.user.EditUser'
         //'mobileapp.view.user.ViewUser'
     ],
     //id:'usertabpanel',
@@ -43,6 +44,7 @@ Ext.define("mobileapp.view.user.User" , {
                 iconCls: 'add',
                 id:'normal_add',
                 title:'创建',
+                type:'create',
                 items:{
                     xtype:'createuser'
                 }
@@ -51,14 +53,19 @@ Ext.define("mobileapp.view.user.User" , {
             {
 
                 iconCls: 'compose',
-                id: 'd_normal_edit',
                 title: '编辑',
-                needselected:true
+                type:'edit',
+                needselected:true,
+                items:{
+                    xtype:'edituser'
+                }
+
             },
 
             {
                 iconCls: 'refresh',
                 //id:'normal_delete',
+                type:'view',
                 needselected:true,
                 title:'查看'
             }
