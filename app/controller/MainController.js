@@ -99,6 +99,7 @@ Ext.define('mobileapp.controller.MainController' , {
      * model store view 缓存地址
      */
     cache_msv:{},
+    active_modulename:false,
     /**
      *
      * @param item
@@ -109,6 +110,7 @@ Ext.define('mobileapp.controller.MainController' , {
         var nav = this.getNav(),title = item.get('text');
 
         var module_name = item.get('id');
+        this.active_modulename = module_name;
 
         if(this.cache_msv[module_name]){
 
@@ -117,7 +119,6 @@ Ext.define('mobileapp.controller.MainController' , {
             that.getToolbar().setTitle(title);
             nav.setDetailCard(view);
         }else{
-
             var view = this.createView(item),  layout = nav.getLayout();
             //anim = item.get('animation');
             //newAnim;
@@ -184,33 +185,32 @@ Ext.define('mobileapp.controller.MainController' , {
                         this.uploadform();
                         break;
                     case  'delete' :
-                        this.delete();
+                        this.deleteitem(data);
                         break
                 }
                 return true;
 
             }
         }
-        /*
-        if(e.getActiveItem().id == "d_normal_edit"){
-            //Ext.Application.
-            var data = Ext.getCmp("usergrid").getSelection();
-            if(data.length<=0){
-                new Ext.MessageBox().alert("提示", "请选择一条信息");
-                return false
+    },
 
-            }else{
-                return true;
+    deleteitem:function(data){
+        //返回store 结果
+        var proxy_url = this.cache_msv[this.active_modulename].store.proxy;
+        console.log(proxy_url);
 
-
+        Ext.Ajax.request({
+            url:proxy_url.api.destroy,
+            params:data,
+            success:function(response){
+                console.log(response);
+            },
+            failure:function(){
             }
-            return false;
-        }else{
 
-            return true;
-        }
+        });
 
-        */
+        return false;
     },
 
     /**

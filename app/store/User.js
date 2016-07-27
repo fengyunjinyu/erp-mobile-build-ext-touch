@@ -8,6 +8,25 @@ Ext.define("mobileapp.store.User" , {
         { 'name': 'Bart',  "email":"bart@simpsons.com",  "phone":"555-222-1234" },
         { 'name': 'Homer', "email":"home@simpsons.com",  "phone":"555-222-1244"  },
         { 'name': 'Marge', "email":"marge@simpsons.com", "phone":"555-222-1254"  }
-    ]
+    ],
+    proxy:{
+        model:'mobileapp.model.User',
+        api:{
+            read :'http://localhost:8085/erp-admin/index.php/Home/Debt/getList',
+            create: 'http://localhost:8085/erp-admin/index.php/Home/user/createuser',
+            update:'http://localhost:8085/erp-admin/index.php/Home/User/updateuser',
+            destroy:'http://localhost:8085/erp-admin/index.php/Home/User/deleteuser',
+            view:'http://localhost:8085/erp-admin/index.php/Home/Debt/getdetails',
+            upload:'http://localhost:8085/erp-admin/index.php/Home/Debt/uploadimage'
+        },
+
+        reader: {
+            type:'json',
+            idPrototype:'id',
+            rootProperty: 'rows',
+            totalProperty: 'totalCount'
+        }
+
+    }
 });
 

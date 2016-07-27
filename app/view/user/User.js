@@ -54,17 +54,23 @@ Ext.define("mobileapp.view.user.User" , {
                 id: 'd_normal_edit',
                 title: '编辑',
                 needselected:true
+            },
+
+            {
+                iconCls: 'refresh',
+                //id:'normal_delete',
+                needselected:true,
+                title:'查看'
             }
+
             ,
             {
                 iconCls: 'delete',
-                id:'normal_view',
-                title:'查看'
-            },
-            {
-                iconCls: 'refresh',
-                id:'normal_delete',
-                title:'刷新'
+                type:'delete',        //方式
+                //id:'normal_delete',
+                needselected:true,  //是否在列表中必须选中一条
+                //notgotab:true,  //点击tab选项卡后是否跳转
+                title:'删除'
             }
         ],
 
