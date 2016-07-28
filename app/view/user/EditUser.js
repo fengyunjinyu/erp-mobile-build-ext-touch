@@ -45,7 +45,8 @@ Ext.define("mobileapp.view.user.EditUser" , {
                 },
                 items: [
                     {
-                        text: 'Disable fields'
+                        text: '保存',
+                        action:'editsubmitform'
                     }]
 
             }

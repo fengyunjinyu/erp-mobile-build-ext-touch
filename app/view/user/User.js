@@ -57,6 +57,7 @@ Ext.define("mobileapp.view.user.User" , {
                 type:'edit',
                 needselected:true,
                 items:{
+
                     xtype:'edituser'
                 }
 

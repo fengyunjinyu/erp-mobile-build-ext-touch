@@ -9,7 +9,8 @@ Ext.define('mobileapp.controller.MainController' , {
             nav: '#mainNestedList',
             btn_nav : "#mainNav",
             btn_login:"#btn_login",
-            btn_logout:"#btn_logout"
+            btn_logout:"#btn_logout",
+
         },
         control:{
             btn_nav:{
@@ -18,6 +19,9 @@ Ext.define('mobileapp.controller.MainController' , {
             nav:{
                 itemtap:'onNavTap',
                 back:'onBackTap'
+            },
+            'button[action=editsubmitform]':{
+                tap:'EditsubmitForm'
             }
         },
         routes: {
@@ -72,17 +76,6 @@ Ext.define('mobileapp.controller.MainController' , {
             //me.getToolbar().setTitle(item.get('text'));
         }
     },
-    activeView:null,  //�当前活动的activeview
-    activeStore:null,
-    activeModel:null,
-    /**
-     * 对象缓存
-     */
-    viewCache:[],
-    StoreCache:[],
-    ModelCache:[],
-
-
     /**
      * model store view 缓存地址
      */
@@ -216,10 +209,17 @@ Ext.define('mobileapp.controller.MainController' , {
                 var obj = Ext.decode(response.responseText);
                 switch(action_type){
                     case 'edit':
-                        me.cache_msv[me.active_modulename].view.down('edit'+me.active_modulename.toLowerCase()).load(obj.data);
+                        console.log(obj.data);
+
+                        /**
+                         * 构造一个数据model
+                         */
+                        var obj_model = Ext.create(me.projectname+'model.'+me.active_modulename , obj.data);
+                        me.cache_msv[me.active_modulename].view.down('edit'+me.active_modulename.toLowerCase()).setRecord(obj_model);
                         break;
                     case 'view':
-                        me.cache_msv[me.active_modulename].view.down('view'+me.active_modulename.toLowerCase()).load(obj.data);
+                        var obj_model = Ext.create(me.projectname+'model.'+me.active_modulename , obj.data);
+                        me.cache_msv[me.active_modulename].view.down('view'+me.active_modulename.toLowerCase()).setRecord(obj.data);
                         break;
                 }
             },
@@ -237,26 +237,20 @@ Ext.define('mobileapp.controller.MainController' , {
      * @param str  type:   edit update
      * @param data datagrid selected data
      */
-    submitForm:function( e,str_type , data){
+    EditsubmitForm:function( e){
+        var me = this;
         var handler;
-        switch(sty_type){
-            case 'edit':
-                handler = this.cache_msv[this.active_module].view.down('edit'+me.active_modulename.toLowerCase());
-                break;
-            case 'view':
-                handler = this.cache_msv[this.active_module].view.down('view'+me.active_modulename.toLowerCase());
-                break;
-        }
+        handler = this.cache_msv[me.active_modulename].view.down('edit'+me.active_modulename.toLowerCase());
         if(!handler){
             new Ext.MessageBox().alert("提示" ,'获取数据异常');
             return ;
         }else{
 
             handler.submit({
-                url:this.cache_msv[this.active_module].store.api.edit,
+                url:me.cache_msv[me.active_modulename].store.proxy.api.update,
                 method:'post',
-                success:function(response){
-                    console.log(success);
+                success:function(){
+                    alert('form submitted successfully!');
 
 
                 },
