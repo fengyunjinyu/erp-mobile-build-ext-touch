@@ -19,7 +19,6 @@ Ext.define("mobileapp.view.main.Main" ,{
         useTitleAsBackText: false,
         displayField: 'text',
         store:Ext.create("mobileapp.store.navigations"),
-
         toolbar:{
             id:'mainNavigationBar',
             xtype:'titlebar',
@@ -44,7 +43,6 @@ Ext.define("mobileapp.view.main.Main" ,{
 /*
 Ext.define("mobileapp.view.main.Main" , {
     extend:'Ext.TabPanel',
-
     config:{
         defaults:{
             styleHtmlContent:true
@@ -73,7 +71,6 @@ Ext.define("mobileapp.view.main.Main" , {
         ]
     }
 })
-
 */
 
 /*

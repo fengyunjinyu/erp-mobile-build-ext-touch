@@ -270,7 +270,6 @@ Ext.define('mobileapp.controller.MainController' , {
     },
 
     onBackTap:function(nestedList , node){
-        console.log('haha');
         if (node.isLeaf()) {
             //this.getSourceButton().setHidden(true);
         }
